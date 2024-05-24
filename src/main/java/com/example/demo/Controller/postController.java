@@ -2,6 +2,7 @@ package com.example.demo.Controller;
 
 import com.example.demo.entity.Post;
 import com.example.demo.repo.PostRepo;
+import com.example.demo.service.JobService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,10 @@ import java.util.List;
 public class postController {
     @Autowired
     PostRepo postRepo;
+
+//    @Autowired
+//    JobService jobService;
+
     @GetMapping("/allPosts")
     public List<Post> getAllPosts()
     {
@@ -25,4 +30,11 @@ public class postController {
     {
         return postRepo.save(post);
     }
+
+//    @GetMapping("/posts/{text}")
+//    @CrossOrigin
+//    public List<Post> search(@PathVariable String text)
+//    {
+//        return JobService.findByText(text);
+//    }
 }
