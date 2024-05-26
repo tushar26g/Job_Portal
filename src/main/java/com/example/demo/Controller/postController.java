@@ -16,9 +16,6 @@ public class postController {
     @Autowired
     PostRepo postRepo;
 
-//    @Autowired
-//    JobService jobService;
-
     @GetMapping("/allPosts")
     public List<Post> getAllPosts()
     {
@@ -30,6 +27,7 @@ public class postController {
     {
         return postRepo.save(post);
     }
+
 
 //    @GetMapping("/posts/{text}")
 //    @CrossOrigin
