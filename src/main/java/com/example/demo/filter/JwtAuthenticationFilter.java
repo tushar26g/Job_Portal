@@ -3,6 +3,7 @@ package com.example.demo.filter;
 import com.example.demo.service.JwtUtil;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -15,8 +16,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
@@ -44,8 +43,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 String requestURL = request.getRequestURL().toString();
                 if (isRefreshToken != null && isRefreshToken.equals("true") && requestURL.contains("refreshtoken")) {
                     allowForRefreshToken(e, request);
-                } else
+                } else {
                     request.setAttribute("exception", e);
+                }
             }
         }
 
